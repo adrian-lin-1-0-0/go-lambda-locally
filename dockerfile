@@ -1,11 +1,9 @@
-FROM public.ecr.aws/lambda/provided:al2 as build
-RUN yum install -y golang
-ADD go.mod go.sum ./
-RUN go mod download
+FROM golang:1.21 as build
+WORKDIR /app
+COPY go.mod go.sum ./
+COPY main.go .
+RUN GOOS=linux GOARCH=amd64 go build -o main main.go
 
-# build
-ADD . .
-RUN go build -tags lambda.norpc -o /main
-FROM public.ecr.aws/lambda/provided:al2
-COPY --from=build /main /main
-ENTRYPOINT [ "/main" ]
+FROM public.ecr.aws/lambda/provided:al2023
+COPY --from=build /app/main ./main
+ENTRYPOINT [ "./main" ]
