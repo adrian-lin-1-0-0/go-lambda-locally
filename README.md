@@ -18,6 +18,8 @@ docker build --platform linux/amd64 -t local-go-lambda:latest .
 make run-image
 ```
 
+or
+
 ```bash
 docker run -p 8080:8080 \
 --entrypoint /usr/local/bin/aws-lambda-rie \
