@@ -31,3 +31,7 @@ local-go-lambda:latest ./main
 ```bash
 curl "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{}'
 ```
+## Ref
+- [AWS Lambda Runtime Interface Emulator](https://github.com/aws/aws-lambda-runtime-interface-emulator/)
+- [Event Models](https://github.com/aws/aws-lambda-go/tree/main/events)
+- [Using AWS Lambda with other services](https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html)
